@@ -6,6 +6,8 @@
 
 #### First we start up our instance and ssh into our instance  from our git bash terminal using our .pem file.
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-16%20101614.png)
+
 Now, to SSH into your instance:
 
 1)Open your terminal (git bash) or use an SSH client.
@@ -16,6 +18,8 @@ Now, to SSH into your instance:
 
 3)Use the following command to SSH into your instance: ssh -i xxxxxx.pem ubuntu@(my instance public-ip)
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-16%20101957.png)
+
 
 ### INSTALLING NGINX IN WEB SERVER
 
@@ -24,7 +28,10 @@ we will begin by installing nginx in few easy steps.
 
 1)first we find out the latest versions of the packages and dependencies
 
-       sudo apt update 
+       sudo apt update
+
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-16%20101957.png)
 
 
 
@@ -33,12 +40,15 @@ we will begin by installing nginx in few easy steps.
        sudo apt install nginx
 
 
+
       
 
 3)To verify that our system was successfully installed and its running we run the command:
      
        sudo systemctl status nginx
 
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20093954.png)
 
 ## OUR FIRST ISSUE
 
@@ -76,14 +86,24 @@ then we restarted we restarted nginx service with
     
     sudo systemctl restart nginx
 
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20094138.png)
+
+
 now our server is up and running.
 first lets try to see how we can access it locally in our ubuntu shell
     
     curl http://localhost:80
 
 
-then we run it in our browser to view the default nginx page
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20095109.png)
 
+
+
+then we run it in our browser to view the default nginx page http://(public ip):80
+
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20124716.png)
 
 
 
@@ -97,10 +117,16 @@ first we run the command in our git bash terminal
    
    sudo apt install mysql-server
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20125530.png)
+
 
 once installation is complate we log into our console using
 
      sudo mysql
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20130940.png)
+
+
     
 this will log you into mysql server as the administrative database with the user as root,
 which is inferred by the use of sudo when running the command
@@ -139,6 +165,7 @@ PHP-FPM enhances the performance and reliability of PHP-based web applications r
 
     sudo apt install php-fpm php-mysql
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20134350.png)
 
 
 Next we will configure nginx to use them
@@ -168,8 +195,13 @@ Open a new configuration file in Nginx's sites-available directory. here we will
      sudo nano /etc/nginx/sites-available/projectLEMP
 
 
+
+
+
+
 now we will type  the bare bones in the blank file
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20142344.png)
 
 
 activate your configuration by linking to the config file nginx's sites-available directory:
@@ -181,6 +213,7 @@ test configuration systext error by typingn:
 
     sudo nginx -t
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20143424.png)
 
 
  we need to disable the default nginx host that is currently configuired to listen to port 80.
@@ -210,6 +243,11 @@ issue that came up:
            index.html: command not found
 
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20145258.png)
+
+issue resolved with
+
+
 
 
 
@@ -218,7 +256,7 @@ solution:
 
        sudo bash -c 'echo "Hello LEMP from hostname $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) with public IP $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)" > /var/www/projectLEMP/index.html'
  
-       ![alt text]()
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20145412.png)       
 
 
 
@@ -242,6 +280,11 @@ type the following lines in the new file,this is a valid php code that will retu
 
 Experienced issue with 502 bad gateway and realized my file edited with sudo nano /etc/nginx/sites-available/projectLEMP was not formatted properly.
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20151143.png)
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20152123.png)
+
+
 
 
 
@@ -257,10 +300,16 @@ we will create a to-do list data base and configure access to it via mysql
 first connect to mysql
    sudo mysql -u root -p
 
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20153300.png)
+
+
+
 create a new database running the following command
 
     CREATE DATABASE example_database;
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20154125.png)
 
 create a new user and grant him full access on the database:
    
@@ -281,6 +330,9 @@ now we want to view the database
     
     SHOW DATABASES;
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20154305.png)
+
+
 
 
 Now we will create table named todo_list
@@ -300,6 +352,7 @@ confirm data was successfully saved run command below:
 
    SELECT * FROM example_database.todo_list;
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-17%20155000.png)
 
 
 after that exit my sql
@@ -310,6 +363,7 @@ create a new php file in your cutom web root directory using your preferred edit
 
      sudo nano /var/www/projectLEMP/todo_list.php
 
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-18%20093725.png)
 
 
 copy and paste content below into your file:
@@ -334,3 +388,6 @@ copy and paste content below into your file:
 
 
 save and close now visit your public domain ending with /todo_list.php
+
+![alt text](https://github.com/techbeast911/lemp_stack_project/blob/main/lemp_stack_project/img/Screenshot%202024-05-18%20093841.png)
+
